@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search in India</title>
+    <link rel="stylesheet" href="newspaper.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #eaeaea;
+            text-align: center;
+            padding: 1em;
+        }
+
+        main {
+            width: 100vw;
+            margin: 20px auto;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(7, 3, 3, 0.1);
+            border-radius: 5px;
+        }
+
+        .job-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 20px;
+            margin-left:50px;
+            width: 380px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px;
+            position: relative;
+            transition: transform .2s; /* Animation */
+        }
+
+        .job-card:hover{
+            background-color: #e9e8e8;
+            color:#000000;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            transform: scale(1);
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .job-details {
+            font-size: 0.9em;
+            color: #837c7c;
+        }
+
+        .apply-button {
+            position: absolute;
+            bottom: 30px;
+            left: 87%;
+            transform: translateX(-50%);
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .apply-button:hover {
+            background-color: #2980b9;
+        }
+
+        .read-more {
+            cursor: pointer;
+            color: #3498db;
+            text-decoration: underline;
+        }
+
+        .full-description {
+            display: none;
+        }
+        section{
+            margin-top: 120px;
+        }
+        .loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+    </style>
+</head>
+<body>
+
+    
+    <style>
+        * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+        font-family: "Fira Sans", sans-serif;
+        background-color: white;
+    }
+    
+    nav {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 5%;
+        background-color: #504e4a;
+    }
+    
+    nav .heading {
+        font-size: 30px;
+        font-weight: 700;
+        color: white;
+    }
+    
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+    
+    nav ul li {
+        padding: 8px 15px;
+        border-radius: 10px;
+        transition: 0.2s ease-in;
+    }
+    
+    nav ul li a {
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+        text-decoration: none;
+        color: white;
+    }
+    
+    nav ul li:hover {
+        background-color: green;
+    }
+    
+    nav ul li a:hover {
+        color: white;
+    }
+    
+    nav .sideMenuButton {
+        font-size: 30px;
+        font-weight: bolder;
+        cursor: pointer;
+        display: none;
+    }
+    
+    </style>
+    
+        <nav>
+            <div class="heading"><a href="main.html" style="text-decoration: none; color:white;">News Guru</a></div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="main.html">Home</a></li>
+                    <li><a href="monthly_magzine.html">Magazines</a></li>
+                    <li><a href="Newpaper.html">Newspaper</a></li>
+                    <li><a href="job&Result.html">Jobs</a></li>
+                </ul>
+            </div>
+        </nav>
+      
+        <section>
+
+<header style="position: relative; top: -40px;">
+    <!-- <h1>Job Search in India</h1> -->
+    <div style="margin-top: 0px;">
+        <label for="searchInput" style="margin-right: 20px;">Search Jobs:</label>
+        <input type="text" id="searchInput" placeholder="Search any job" style="width: 300px; height: 30px; border-radius: 8px; text-align: center;">
+        <button onclick="searchJobs()" style="height: 30px; width: 80px; font-size: 15px; border-radius: 8px; background-color: #45f1ebc9;">Search</button>
+    </div>
+</header>
+
+<main>
+   
+    <div id="loader" class="loader"></div>
+
+    <div id="jobResults"></div>
+
+    <script>
+        const baseUrl = 'https://jsearch.p.rapidapi.com/search';
+        let searchQuery = 'UPSC'; // Default search query
+
+        const options = {
+            method: 'GET',
+            headers: {
+                // 'X-RapidAPI-Key': 'a102489748msh991ced42a84169bp129e66jsnf2831c8b97b0',
+                // 'X-RapidAPI-Key': 'b439c44c15msh2c360ba612d320ep10f0b3jsn7a5edafd98df',
+                'X-RapidAPI-Key': '52c758d50amshc72c05fb62a339fp150c09jsncd71ff7097a5',
+
+
+
+
+                'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
+            }
+        };
+
+        async function fetchJobs() {
+            try {
+                const loader = document.getElementById('loader');
+                loader.style.display = 'block'; // Show loader
+
+                const response = await fetch(`${baseUrl}?query=${searchQuery}inIndia&page=7&num_pages=7`, options);
+                const result = await response.json();
+                loader.style.display = 'none'; // Hide loader
+                console.log(result);
+                
+
+                const jobResultsElement = document.getElementById('jobResults');
+                jobResultsElement.innerHTML = ''; // Clear previous results
+
+                if (result && result.data && result.data.length > 0) {
+                    result.data.forEach(job => {
+                        const card = document.createElement('div');
+                        card.className = 'job-card';
+
+                        const title = document.createElement('div');
+                        title.className = 'job-title';
+                        title.textContent = job.job_title || 'Job Title';
+
+                        const details = document.createElement('div');
+                        details.className = 'job-details';
+
+                        const logo = document.createElement('img');
+                        logo.src = job.employer_logo || 'placeholder-logo.png';
+                        logo.alt = 'Company Logo';
+                        logo.style.maxWidth = '100px';
+                        details.appendChild(logo);
+
+                        const employerName = document.createElement('p');
+                        employerName.textContent = 'Employer: ' + (job.employer_name || 'Unknown');
+                        details.appendChild(employerName);
+
+                        const location = document.createElement('p');
+                        location.textContent = 'Location: ' + (job.job_city + ', ' + job.job_country || 'Unknown');
+                        details.appendChild(location);
+
+                        const description = document.createElement('p');
+                        description.textContent = 'Description: ' + (job.job_description ? truncateDescription(job.job_description, 50) : 'No description available');
+                        details.appendChild(description);
+
+                        const employmentType = document.createElement('p');
+                        employmentType.textContent = 'Employment Type: ' + (job.job_employment_type || 'Unknown');
+                        details.appendChild(employmentType);
+
+                        const publisher = document.createElement('p');
+                        publisher.textContent = 'Publisher: ' + (job.job_publisher || 'Unknown');
+                        details.appendChild(publisher);
+
+                        const postedDate = document.createElement('p');
+                        postedDate.textContent = 'Posted Date: ' + formatUTCDate(job.job_posted_at_datetime_utc);
+                        details.appendChild(postedDate);
+
+                        const fullDescription = document.createElement('p');
+                        fullDescription.className = 'full-description';
+                        fullDescription.textContent = 'Full Description: ' + (job.job_description || 'No description available');
+                        details.appendChild(fullDescription);
+
+                        const applyButton = document.createElement('button');
+                        applyButton.className = 'apply-button';
+                        applyButton.textContent = 'Apply';
+                        applyButton.onclick = function () {
+                            window.open(job.job_apply_link, '_blank');
+                        };
+                        details.appendChild(applyButton);
+
+                        card.appendChild(title);
+                        card.appendChild(details);
+                        jobResultsElement.appendChild(card);
+                    });
+                } else {
+                    jobResultsElement.innerHTML = '<p>No jobs found.</p>';
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        function searchJobs() {
+            const searchInput = document.getElementById('searchInput');
+            searchQuery = searchInput.value.trim();
+            fetchJobs();
+        }
+
+        function truncateDescription(text, limit) {
+            const words = text.split(' ');
+            if (words.length > limit) {
+                return words.slice(0, limit).join(' ') + '...';
+            }
+            return text;
+        }
+
+        function formatUTCDate(utcDate) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+            return new Intl.DateTimeFormat('en-US', options).format(new Date(utcDate));
+        }
+
+        // Call the fetchJobs function when the page loads
+        fetchJobs();
+    </script>
+</main>
+</section>
+</body>
+</html>

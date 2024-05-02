@@ -1,0 +1,836 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@500&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-text-color: #183b56;
+  --secondary-text-color: #577592;
+  --accent-color: #2294ed;
+  --accent-color-dark: #1d69a3;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  /* color: var(--primary-text-color); */
+  color: rgb(6, 6, 6);
+  background-color: rgb(227, 199, 164);
+  /* background-image: url(newspaper-bg-imageblur.jpg); */
+  background-size: contain;
+
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  color: var(--secondary-text-color);
+  line-height: 1.4rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+nav {
+  background-color: #3c3c3b;
+  box-shadow: 0 0 4px #bbd0e2;
+  position: fixed;
+  top: 0;
+  z-index: 9999999999!important;
+  left: 0;
+  right: 0;
+}
+
+.main-nav {
+  justify-content: space-between;
+  padding-block: 8px;
+}
+
+.company-logo img {
+  width: 120px;
+}
+
+.nav-links ul {
+  gap: 16px;
+  color: rgb(219, 207, 207);
+}
+
+.hover-link {
+  cursor: pointer;
+}
+
+.hover-link:hover {
+  color: var(--secondary-text-color);
+}
+
+.hover-link:active {
+  color: red;
+}
+
+.nav-item.active {
+  color: var(--accent-color);
+}
+
+.search-bar {
+  height: 32px;
+  gap: 8px;
+}
+
+.news-input {
+  width: 200px;
+  height: 100%;
+  padding-inline: 12px;
+  border-radius: 4px;
+  border: 2px solid #bbd0e2;
+  font-family: "Roboto", sans-serif;
+}
+
+.search-button {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.search-button:hover {
+  background-color: var(--accent-color-dark);
+}
+
+main {
+  padding-block: 20px;
+  margin-top: 80px;
+}
+
+.cards-container {
+  justify-content: space-between;
+  
+  flex-wrap: wrap;
+  row-gap: 20px;
+  align-items: start;
+  border-radius: 15px;
+}
+
+.card {
+  width: 360px;
+  
+  min-height: 400px;
+  /* box-shadow: 0 0 4px #d4ecff; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 14px;
+  cursor: pointer;
+  background-color: #fff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 8px #d4ecff;
+  background-color: #f9fdff;
+  transform: translateY(-2px);
+}
+
+.card-header img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 12px;
+}
+
+.news-source {
+  margin-block: 12px;
+}
+
+/* slidre */
+
+.lol {
+  padding-top: 140px;
+  border-radius: 12px;
+}
+
+
+/* #lol{
+    margin-top:700px;
+   
+  } */
+.slider-container {
+  max-width: 800px;
+  /* margin-top: 1px; */
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 2s ease-in-out;
+}
+
+.slide {
+  min-width: fit-content;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.slide img {
+  width: 800px;
+  /* overflow: hidden; */
+  height: 480px;
+  border-radius: 12px;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  /* left:; */
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  /* Semi-transparent background for better text readability */
+  padding: 9px;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: left;
+  border-radius: 12px;
+}
+
+
+.slide-content h3 {
+  margin: 0;
+}
+
+.slide-content p {
+  margin: 5px 0;
+}
+
+.slide-content a {
+  color: #fff;
+  text-decoration: none;
+  background: #000000;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.slider-nav button {
+  background: #111111;
+  color: #fff;
+  border: none;
+  padding: 11px;
+  cursor: pointer;
+  border-radius: 72px;
+  opacity: 0.5;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50px;
+}
+
+.slider-nav button:hover {
+  background: #000000;
+  padding-block: 15px;
+  
+  /* Change the background color on hover */
+}
+
+
+/* weather */
+.weather-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px;
+  padding-left: 10px;
+  border-radius: 5px;
+  /* margin-left: 70px; */
+  margin-right: 15px;
+  margin-top: 5px;
+  padding-right: 15px;
+
+}
+
+.weather-container img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+/* #newspaper{
+        font-family: "Poppins", sans-serif;
+      cursor: pointer;
+        color:gray;
+      }
+      #newspaper:hover{
+        color: var(--secondary-text-color);
+      }
+      #newspaper:active{
+        color:aqua;
+      } */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* like */
+
+
+
+
+.btn-like{
+  cursor: pointer;
+  outline: 0;
+  color: #AAA;
+padding:12px;
+ border-radius:12px;
+ border-width:0;
+ 
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-like:hover{
+  background:#7c7c7c;
+}
+
+.green:hover{
+  background-color:rgb(64, 243, 64);
+}
+
+.red:hover{
+  background-color: rgb(252, 50, 50);
+}
+
+.loader-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.like:hover {
+  background-color: rgb(159, 210, 249);
+}
+
+.dislike:hover {
+  background-color: #df2e63;
+}
+
+.like-dislike-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+
+/* Header Animation */
+/* Add this style for the header animation */
+/* .header-animation {
+  width: 120px; /* Adjust the width as needed */
+
+/* @keyframes headerAnimation {
+  from {
+    transform: translateY(-10px); /* Adjust the initial position */
+/* }
+  to {
+    transform: translateY(10px); /* Adjust the final position */
+
+
+/* drop-down */
+.ani {
+  margin-left: 10px;
+}
+
+.main-animation {
+
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h4 {
+  padding-top: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(235, 171, 52);
+  /* font-size: 4rem; */
+}
+
+.roller {
+  height: 4.125rem;
+  /* line-height: 4rem; */
+  position: relative;
+  overflow: hidden;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #da0847;
+}
+
+
+#spare-time {
+  font-size: 0.8rem;
+  font-style: italic;
+  /* letter-spacing: 1rem; */
+  margin-top: 0;
+  color: #A8DADC;
+
+}
+
+.roller #rolltext {
+  position: absolute;
+
+  animation: slide 8s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    top: 0;
+  }
+
+  25% {
+    top: -4rem;
+  }
+
+  50% {
+    top: -8rem;
+  }
+
+  72.5% {
+    top: -12.25rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h4 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #F1FAEE;
+    font-size: 2.125rem;
+  }
+
+  .roller {
+    height: 2.6rem;
+    line-height: 2.125rem;
+  }
+
+  #spare-time {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .roller #rolltext {
+    animation: slide-mob 5s infinite;
+  }
+
+  @keyframes slide-mob {
+    0% {
+      top: 0;
+    }
+
+    25% {
+      top: -2.125rem;
+    }
+
+    50% {
+      top: -4.25rem;
+    }
+
+    72.5% {
+      top: -6.375rem;
+    }
+  }
+}
+
+/* nav drop down */
+
+/*  states dropdown content */
+
+.dropdown-state{
+  display: none;
+  position: absolute;
+  /* background-color: #7fadf1; */
+  box-shadow: 0 12px 23px rgba(0, 0, 0, 0.2);
+  z-index: 300;
+  border-radius: 12px;
+
+}
+
+.dropdown-state a{
+  color: rgb(5, 5, 5);
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+
+}
+
+.dropdown-state a:hover {
+  background-color: #555;
+  border-radius: 12px;
+}
+
+#state-div{
+  background-color:  #7fadf1;
+  /* border: 1px black solid; */
+  /* box-shadow: 10px 25px 40px rgba(0, 0, 0, 0.768); */
+  
+  box-shadow: rgba(0, 0, 0, 0.536) 0px 14px 28px, rgba(0, 0, 0, 0.59) 0px 10px 10px;
+    width: 1200px;
+  height: 250px; 
+  position: relative;
+  right: 900px;
+  top: 30px;
+  border-radius: 30px;
+}
+
+.state-div1{
+  position: relative;
+  /* left: -50px; */
+  top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+
+
+.nav-item {
+  list-style-type: none;
+  
+  /* Remove the dot */
+  /* Change the text color */
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #7fadf1;
+  box-shadow: 0 12px 23px rgba(0, 0, 0, 0.2);
+  z-index: 300;
+  border-radius: 12px;
+}
+
+.dropdown-content a {
+  color: rgb(5, 5, 5);
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+  border-radius: 12px;
+}
+
+.nav-item:hover .dropdown-content {
+  display: block;
+}
+
+/* breaking news  */
+/* Add this style for the Breaking News section */
+/* Add this to your existing CSS file or style tag */
+.news-container {
+  position: fixed;
+  top: 85px;
+  /* Adjust the top value based on your navigation height */
+  left: 0;
+  right: 0;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  /* Set the background color as needed */
+  z-index: 1;
+
+}
+
+.news-container .title {
+  position: absolute;
+  background: #df2020;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  color: white;
+  font-weight: bold;
+  z-index: 200;
+}
+
+.news-container ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  animation: scroll 25s infinite linear;
+}
+
+.news-container ul li {
+  white-space: nowrap;
+  padding: 10px 24px;
+  color: #494949;
+  position: relative;
+}
+
+.news-container ul li::after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: #b8b8b8;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.news-container ul li:last-child::after {
+  display: none;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-1083px);
+
+  }
+}
+
+/* Adjust the styling based on your design */
+
+/* latestnews block */
+/* Add this to your existing CSS file or style tag */
+
+/* Additional styles for the modified Latest News block */
+.latest-news-container {
+  width: 250px;
+  margin-top: 140px;
+  /* Adjust the top value based on your navigation height */
+  margin-right: 20px;
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+  /* Set the background color as needed */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 10px;
+  border-radius: 8px;
+  position: absolute;
+}
+
+.latest-news-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.latest-news-topic {
+  color: var(--accent-color);
+}
+
+.latest-news-item {
+  margin-bottom: 13px;
+  border-bottom: 1px solid #ddd;
+}
+
+.latest-news-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+.latest-news-item p {
+  margin: 0;
+}
+
+/* Add this style to ensure the slider stays in its original place */
+
+
+/* Add this style to adjust the spacing between the Latest News block and the slider */
+/* TOP-NEWS-RIGHT */
+
+
+/* Add this CSS for the state-news-container */
+#state-news-container {
+  background-color: #f4f4f4;
+  /* Set background color */
+  padding: 10px;
+  /* Add padding for spacing */
+  margin-top: -30.4em;
+  /* Adjust margin as needed */
+  right: -8px;
+}
+
+/* Add this CSS for the state-news-heading */
+#state-news-container .latest-news-heading {
+  font-size: 24px;
+  /* Set font size */
+  color: #333;
+  /* Set text color */
+  margin-bottom: 10px;
+  
+  /* Add margin for spacing */
+}
+
+/* Add this CSS for the state-news-list */
+/* Add this CSS for the state-news-list items */
+#state-news-list li {
+  margin-bottom: 10px;
+  /* Add margin between news items */
+  border-bottom: 1px solid #ddd;
+  color:#2294ed;
+  /* Add a border between news items */
+  padding-bottom: 10px;
+  
+  /* Add padding below each news item */
+}
+
+/* Add this CSS for the state-news-list links */
+#state-news-list a {
+  text-decoration: none;
+  /* Remove underline from links */
+  color:#2294ed;
+
+  font-size: 16px;
+  /* Set font size */
+  display: block;
+  /* Make links block-level for better spacing */
+}
+
+/* Add this CSS for the state-news-list link hover effect */
+#state-news-list a:hover {
+  color: #004080;
+  /* Set link color on hover */
+}
+
+
+/* Add this CSS for the state-news-list link hover effect */
+
+
+
+/* explorer */
+
+/* Add this to your existing CSS file or style tag */
+
+/* Add this to your existing CSS file or style tag */
+
+/* Add this to your existing CSS file or style tag */
+
+.explorer {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 25px 8px;
+  /* margin-top: 10px; */
+ color: #000000;
+  position:absolute;
+}
+
+
+
+.explorer-options {
+  display: none;
+  position: absolute;
+  color: #000000;
+  top: 51px; /* Adjust top position based on your navigation height */
+  left: 0;
+  background-color: #7fadf1;
+  /* box-shadow: 0 12px 23px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(0, 0, 0, 0.536) 0px 14px 28px, rgba(0, 0, 0, 0.59) 0px 10px 10px;
+  z-index: 300;
+  border-radius: 16px;
+}
+
+.explorer-options .nav-item {
+  color: rgb(0, 0, 0);
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.explorer-options .nav-item:hover {
+  background-color: #787272;
+  border-radius: 16px;
+}
+
+
+#datetimeContainer {
+  width: 100px;
+  height: 40px; 
+  /* border: 1px solid #dc2626; */
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px; 
+  z-index: 120;
+  padding: relative;
+  right: -300px;
+}

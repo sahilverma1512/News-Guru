@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suduko</title>
+  <link rel="stylesheet" href="suduko.css">
+  <link rel="stylesheet" href="newspaper.css">
+  <link rel="shortcut icon" href="websitelogo1.ico" type="image/x-icon">
+
+</head>
+
+<body style="height: 87vh;">
+
+    
+
+
+  <nav class="app-bar">
+
+
+    
+    <!-- <div class="bar-font title" ><h1 style="margin-left: 600px; font-size: 50px;">Sudoku</h1></div> -->
+
+    <div class="quiz-container">
+      <div class="quiz-head">
+
+          <nav>
+              <div class="main-nav container flex">
+          
+                <div class="ani">
+                  <div class="main-animation" style="font-size: 40px;">
+                    <a href="main.html" style="color: aliceblue;">News Guru</a>
+                    
+          
+                  </div>
+                </div>
+                <!-- <h1 class="heading-newspaper" style="font-size: 50px;">Suduko</h1> -->
+                <div class="nav-links">
+                  <ul class="flex">
+                    <a href="main.html" style="text-decoration: none;
+                            color: white;
+                            cursor: pointer; ">
+                      <li class="hover-link nav-item" id="ipl">Home
+                    </a>
+          
+          
+                    </li></a>
+          
+                    <a href="monthly_magzine.html"><li class="hover-link nav-item" id="finance" style="color: white;"> Magzines</li></a>
+                    <li class="hover-link nav-item" id="politics"><a href="Newpaper.html" style="text-decoration: none;
+                                color: white;
+                                cursor: pointer; ">Newspaper</a>
+                    </li>
+                    <a href="quiz.html"><li class="hover-link nav-item" id="finance" style="color: white;">Quiz</li></a>
+                    
+                  </ul>
+                </div>
+          
+              </div>
+              </div>
+    <div id="moreoption-sec" class="more-option-div more-button">
+
+  
+    <button id="check-btn" onclick="checkButtonClick()" class="button bar-button more-button" style="z-index: 100;">
+      <span class="material-icons" style="z-index: 100; margin-top: 40px;">Check</span>
+    </button>
+    <button id="isunique-btn" style="display: none;" onclick="isUniqueButtonClick();"
+      class="button bar-button more-button">
+      <span class="material-icons">Call_Split</span>
+      <span class="material-icons">Is unique</span>
+    </button>
+    <button id="solve-btn" style="display: none;" onclick="solveButtonClick()" class="button bar-button more-button">
+      <span class="material-icons">Border_Color</span>
+      <span class="material-icons">Solve</span>
+    </button>
+
+  </nav>
+
+  <div class="floating">
+    <button onclick="showDialogClick('dialog');" class="button floating-btn vertical-adjust">
+      <span class="material-icons">Start</span>
+    </button>
+  </div>
+  <div id="hamburger-menu" class="hamburger-menu">
+    <nav id="nav-menu" class="nav-menu">
+      <div class="nav-head">
+        <div class="nav-head-img">
+          <img src="https://image.ibb.co/jmuOKn/icon.jpg" art="" />
+        </div>
+        <div class="nav-head-title">Sudoku</div>
+      </div>
+      <ul class="nav-items">
+        <button onclick="showDialogClick('dialog');" ripple-color="#003c8f" class="button nav-item vertical-adjust">
+          <div>
+            <span class="material-icons">Add</span>
+            <span style="left:12px;">New game</span>
+          </div>
+        </button>
+        <button onclick="sudokuSolverMenuClick();" ripple-color="#003c8f" class="button nav-item vertical-adjust">
+          <div>
+            <span class="material-icons">Edit</span>
+            <span style="left:12px;">Sudoku Solver</span>
+          </div>
+        </button>
+       
+        <div class="bar-footer">
+          <ul>
+            <a href="#" class="bar-footer-link">Site feedback</a>
+            <a href="#" class="bar-footer-link">Privacy</a>
+            <a href="#" class="bar-footer-link">Terms</a>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+    <div class="nav-menu-blank" onclick="hideHamburgerClick()">
+
+    </div>
+  </div>
+
+  
+
+  <div id="dialog" class="dialog">
+    <div id="dialog-box" class="dialog-content">
+      <div class="dialog-header">New game</div>
+
+      <div class="dialog-body">
+        <p>Select game difficulty to get started.</p>
+        <ul>
+          <li class="radio-option">
+            <label for="very-easy">
+              <input id="very-easy" value="Very Easy" type="radio" name="difficulty"> Very easy
+            </label>
+          </li>
+          <li class="radio-option">
+            <label for="easy">
+              <input id="easy" value="Easy" type="radio" name="difficulty"> Easy
+            </label>
+          </li>
+          <li class="radio-option">
+            <label for="normal">
+              <input id="normal" value="Normal" type="radio" name="difficulty"> Normal
+            </label>
+          </li>
+          <li class="radio-option">
+            <label for="hard">
+              <input id="hard" value="Hard" type="radio" name="difficulty"> Hard
+            </label>
+          </li>
+          <li class="radio-option">
+            <label for="very-hard">
+              <input id="very-hard" value="Expert" type="radio" name="difficulty"> Expert
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="dialog-footer">
+        <button onclick="startGameButtonClick();" ripple-color="#003c8f"
+          class="button dialog-btn vertical-adjust">OK</button>
+        <button onclick="hideDialogButtonClick('dialog');" ripple-color="#202020"
+          class="button dialog-btn vertical-adjust">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="body" id="sudoku">
+    <div class="card game">
+      <table id="puzzle-grid">
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+          <td>
+            <input type="text" maxlength="1" onchange="checkInput(this)" disabled />
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+ 
+  </div>
+
+
+
+
+
+  <script src="suduko.js"></script>
+
+
+
+</body>
+
+</html>
